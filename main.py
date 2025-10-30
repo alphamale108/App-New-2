@@ -17,13 +17,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ─── Configuration ──────────────────────────────────────────────────────────────
-API_ID = xxxxxxx
-API_HASH = "xxxxxxxx"
-BOT_TOKEN = "xxxxxxxxxx:xxxxxxxxxxxx"
+API_ID = int(os.environ.get("API_ID", 0))
+API_HASH = os.environ.get("API_HASH", "")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
 # Only these user IDs can trigger /setchannel or upload
-ALLOWED_USER_IDS = [xxxxxxxxxxxxxxxx]
+ALLOWED_USER_IDS = [int(x.strip()) for x in os.environ.get("ALLOWED_USER_IDS", "").split(",") if x.strip()]
 
 app = Client(
     "simple_subject_bot",
